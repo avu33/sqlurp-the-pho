@@ -20,3 +20,4 @@ pip-wheel-metadata/
 .DS_Store
 .vscode/
 .idea/
+!.env.example
