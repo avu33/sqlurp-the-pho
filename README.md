@@ -53,10 +53,11 @@ Flask auto-loads .env via python-dotenv (the app calls load_dotenv()).
 
 4) (First-time) Create schema / stored procs (optional if already created)
 From the project root (where the SQL files live):
-# Tables + seed
+
+Tables + seed:
 mysql -h <HOST> -P <PORT> -u <USER> -p --ssl-mode=REQUIRED <DATABASE> < DDL.sql
 
-# Stored procedures (create/update)
+Stored procedures (create/update):
 mysql -h <HOST> -P <PORT> -u <USER> -p --ssl-mode=REQUIRED <DATABASE> < plsql.sql
 
 5) Run the app
