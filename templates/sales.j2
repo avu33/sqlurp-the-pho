@@ -1,0 +1,37 @@
+{% extends "main.j2" %}
+{% block content %}
+
+<h1>Sales</h1>
+
+
+
+<h2>Sales List</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Sale ID</th>
+      <th>Menu Item ID</th>
+      <th>Total Revenue</th>
+      <th>Total Cost</th>
+      <th>Total Profit</th>
+      <th>Quantity Sold</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sale in sales %}
+    <tr>
+      <td>{{ sale.saleID }}</td>
+      <td>{{ sale.menuItemID }}</td>
+      <td>{{ sale.totalRevenue }}</td>
+      <td>{{ sale.totalCost }}</td>
+      <td>{{ sale.totalProfit }}</td>
+      <td>{{ sale.quantitySold }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<hr>
+
+
+{% endblock %}

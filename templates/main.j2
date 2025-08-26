@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>{% block title %}SQLurp the Pho{% endblock %}</title>
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a> | 
+    <a href="/customers">Customers</a> | 
+    <a href="/orders">Orders</a> | 
+    <a href="/menu-items">Menu Items</a> | 
+    <a href="/sales">Sales</a> | 
+    <a href="/order-details">Order Details</a> | 
+    <form method="post" action="/reset-db">
+        <button type="submit" onclick="return confirm('This will reset tables to default values. Continue?');">Reset All Data</button>
+    </form>
+</nav>
+
+<hr>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>

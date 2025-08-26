@@ -1,0 +1,30 @@
+{% extends "main.j2" %}
+{% block content %}
+
+<h1>Orders</h1>
+
+<h2>Order List</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Customer ID</th>
+      <th>Timestamp</th>
+      <th>Total Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.orderID }}</td>
+      <td>{{ order.customerID }}</td>
+      <td>{{ order.timestamp }}</td>
+      <td>{{ order.totalAmount }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<hr>
+
+{% endblock %}

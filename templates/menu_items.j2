@@ -1,0 +1,102 @@
+{% extends "main.j2" %}
+{% block content %}
+
+<h1>Menu Items</h1>
+
+
+{#
+Citation for use of AI Tools:
+Date: 06/09/2025
+Prompts used to generate style sheet for UI:
+Create form boxes with a modern, clean design that fits the Asian theme.
+AI Source URL: https://chatgpt.com/
+#}
+
+<div class="form-box">
+  <div class="form-title">Create a Menu Item</div>
+  <form method="POST" action="/create-menu-item">
+    <label>Item Name:</label>
+    <input type="text" name="itemName" required>
+
+    <label>Description:</label>
+    <input type="text" name="description">
+
+    <div class="form-row">
+    <label>Price:</label>
+    <input type="number" name="price" step="0.01" min="0" required>
+
+    <label>Cost of Food (%):</label>
+      <select name="costOfFood" required>
+      <option value="20%">20%</option>
+      <option value="50%">50%</option>
+    </select>
+    </div>
+
+    <input type="submit" value="Create Menu Item">
+
+  </form>
+</div>
+
+<div class="form-box">
+  <div class="form-title">Update Menu Item</div>
+  <form method="POST" action="/update-menu-item">
+    <label for="menuItemID">Select Item to Update:</label>
+    <select name="menuItemID" required>
+      {% for item in menu_items %}
+        <option value="{{ item.menuItemID }}">
+          {{ item.itemName }} (ID: {{ item.menuItemID }})
+        </option>
+      {% endfor %}
+    </select>
+
+    <div class="form-row">
+      <label for="price">New Price:</label>
+      <input type="number" name="price" step="0.01" min="0" required>
+
+      <label for="costOfFood">Cost of Food:</label>
+      <select name="costOfFood" required>
+        <option value="20%">20%</option>
+        <option value="50%">50%</option>
+      </select>
+    </div>
+
+    <button type="submit">Update</button>
+  </form>
+</div>
+
+
+<h2>Menu Item List</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Menu Item ID</th>
+      <th>Item Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Cost Of Food</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in menu_items %}
+    <form method="POST" action="/delete-menu-item">
+      <tr>
+        <td>{{ item.menuItemID }}</td>
+        <td>{{ item.itemName }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.costOfFood }}</td>
+        <td>
+          <input type="hidden" name="menuItemID" value="{{ item.menuItemID }}">
+          <input type="hidden" name="itemName" value="{{ item.itemName }}">
+          <button type="submit">Delete</button>
+        </td>
+      </tr>
+    </form>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+{% endblock %}
